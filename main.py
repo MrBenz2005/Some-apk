@@ -9,11 +9,8 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 Config.set('graphics', 'width', 400)
 Config.set('graphics', 'height', 700)
 
-sm = ScreenManager()
-sm.add_widget(MenuScreen(name='menu'))
 
-
-class Gamescreen(Screen):
+class MyApp(Screen):
 
     def build(self):
         bl = BoxLayout(orientation='vertical', padding=15)
@@ -30,7 +27,7 @@ class Gamescreen(Screen):
         return bl
 
 
-class MenuScreen(Screen):
+class MenuScreen(App):
 
     def build(self):
         bl = BoxLayout(orientation='vertical', padding=15)
@@ -40,6 +37,8 @@ class MenuScreen(Screen):
         bl.add_widget(Button(text="PART4"))
         return bl
 
+sm = ScreenManager()
+sm.add_widget(MenuScreen(name='menu'))
 
 if __name__ == '__main__':
     MyApp().run()
