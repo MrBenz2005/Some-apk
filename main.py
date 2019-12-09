@@ -6,7 +6,7 @@ from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-Config.set('graphics', 'width', 400)
+Config.set('graphics', 'width', 1000)
 Config.set('graphics', 'height', 700)
 
 
