@@ -13,10 +13,6 @@ from kivy.uix.anchorlayout import AnchorLayout
 Config.set('graphics', 'width', 1000)
 Config.set('graphics', 'height', 800)
 
-Config.set('graphics', 'width', 400)
-Config.set('graphics', 'height', 700)
-
-
 
 class MenuScreen(Screen):
 
