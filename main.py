@@ -7,7 +7,7 @@ from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 Config.set('graphics', 'width', 1000)
-Config.set('graphics', 'height', 700)
+Config.set('graphics', 'height', 800)
 
 
 class MenuScreen(Screen):
