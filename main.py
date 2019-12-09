@@ -6,9 +6,7 @@ from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.anchorlayout import AnchorLayout
-# from qst import
-# from qst import
-
+from kivy.uix.floatlayout import FloatLayout
 
 Config.set('graphics', 'width', 1000)
 Config.set('graphics', 'height', 800)
@@ -18,9 +16,9 @@ class MenuScreen(Screen):
 
     def __init__(self, **kw):
         super(MenuScreen, self).__init__(**kw)
-        bl = BoxLayout(orientation='vertical', padding=15)
-        bl.add_widget(Button(text="idk", on_press=lambda x: set_screen('idk')))
-        bl.add_widget(Button(text="Math", on_press=lambda x: set_screen('math')))
+        bl = BoxLayout(orientation='vertical', padding=10, spacing=10, size_hint=(0.75, .75), pos=(250, 100))
+        bl.add_widget(Button(text="idk", on_press=lambda x: set_screen('idk'), size_hint=(0.7, .5), pos=(350, 200)))
+        bl.add_widget(Button(text="Math", on_press=lambda x: set_screen('math'), size_hint=(0.7, .5), pos=(350, 200)))
         self.add_widget(bl)
 
 
