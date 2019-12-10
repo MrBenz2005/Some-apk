@@ -6,8 +6,7 @@ idk = {'qst1': ['ask', 'ask1', 'ask2', 'ask3'],
 
 
 def key(slovar, number):
-    keys = []
-    if number <= len(slovar):
-        for i in slovar:
-            keys.append(i)
-    return keys[number - 1]
+    a = []
+    for i in slovar:
+        a.append(i)
+    return a[number-1]
