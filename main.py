@@ -6,10 +6,13 @@ from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.anchorlayout import AnchorLayout
-from kivy.uix.floatlayout import FloatLayout
+from qst import math
+from qst import key
+from qst import idk
+import random
 
-Config.set('graphics', 'width', 1000)
-Config.set('graphics', 'height', 800)
+Config.set('graphics', 'width', 400)
+Config.set('graphics', 'height', 700)
 
 
 class MenuScreen(Screen):
@@ -31,26 +34,44 @@ class I_dont_know(Screen):
         al = AnchorLayout(anchor_x='left', anchor_y='top', size_hint=(1, .1))
         al.add_widget(Button(text="Back", on_press=lambda x: set_screen('menu'), size_hint=(.5, 1)))
         bl = BoxLayout(orientation='vertical', padding=15)
-        gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
-        qst = Label(text='qst')
+        self.gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
+        self.qst_on = Label(text='')
         bl.add_widget(al)
-        bl.add_widget(qst)
-
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        bl.add_widget(gl)
+        bl.add_widget(self.qst_on)
+        self.btn1 = Button(text='answ', on_press=self.check_answ)
+        self.btn2 = Button(text='answ', on_press=self.check_answ)
+        self.btn3 = Button(text='answ', on_press=self.check_answ)
+        self.btn4 = Button(text='answ', on_press=self.check_answ)
+        self.gl.add_widget(self.btn1)
+        self.gl.add_widget(self.btn2)
+        self.gl.add_widget(self.btn3)
+        self.gl.add_widget(self.btn4)
+        bl.add_widget(self.gl)
         self.add_widget(bl)
+        self.generate_q()
+        self.generate_answ()
+        # генерация начального вопроса
 
-    def generate_q(self, instance):
-        instance.text = 'yes'
+    def generate_q(self):
+        rand_num_qst = random.randint(0, len(math))
+        random_question = key(idk, rand_num_qst)
+        self.qst_on.text = str(random_question)
+        self.saved_qst = random_question
 
-    def generate_answ(self, instance):
-        pass
+    def generate_answ(self):
+        random_nums_anws = list(range(0, 4))
+        random.shuffle(random_nums_anws)
+        self.btn1.text = str(idk.get(self.saved_qst)[random_nums_anws[0]])
+        self.btn2.text = str(idk.get(self.saved_qst)[random_nums_anws[1]])
+        self.btn3.text = str(idk.get(self.saved_qst)[random_nums_anws[2]])
+        self.btn4.text = str(idk.get(self.saved_qst)[random_nums_anws[3]])
+
+        if len(idk.get(self.saved_qst)) > 3:
+            pass
+        # мне не очень хочется делать вставку картинки пока что
 
     def check_answ(self, instance):
-        instance.text = 'no'
+        pass
 
 
 class Math(Screen):
@@ -62,26 +83,44 @@ class Math(Screen):
         al = AnchorLayout(anchor_x='left', anchor_y='top', size_hint=(1, .1))
         al.add_widget(Button(text="Back", on_press=lambda x: set_screen('menu'), size_hint=(.5, 1)))
         bl = BoxLayout(orientation='vertical', padding=15)
-        gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
-        qst = Label(text='qst')
+        self.gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
+        self.qst_on = Label(text='')
         bl.add_widget(al)
-        bl.add_widget(qst)
-
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        gl.add_widget(Button(text='answ', on_press=self.check_answ))
-        bl.add_widget(gl)
+        bl.add_widget(self.qst_on)
+        self.btn1 = Button(text='answ', on_press=self.check_answ)
+        self.btn2 = Button(text='answ', on_press=self.check_answ)
+        self.btn3 = Button(text='answ', on_press=self.check_answ)
+        self.btn4 = Button(text='answ', on_press=self.check_answ)
+        self.gl.add_widget(self.btn1)
+        self.gl.add_widget(self.btn2)
+        self.gl.add_widget(self.btn3)
+        self.gl.add_widget(self.btn4)
+        bl.add_widget(self.gl)
         self.add_widget(bl)
+        self.generate_q()
+        self.generate_answ()
+        # генерация начального вопроса
 
-    def generate_q(self, instance):
-        instance.text = 'yes'
+    def generate_q(self):
+        rand_num_qst = random.randint(0, len(math))
+        random_question = key(math, rand_num_qst)
+        self.qst_on.text = str(random_question)
+        self.saved_qst = random_question
 
-    def generate_answ(self, instance):
-        pass
+    def generate_answ(self):
+        random_nums_anws = list(range(0, 4))
+        random.shuffle(random_nums_anws)
+        self.btn1.text = str(math.get(self.saved_qst)[random_nums_anws[0]])
+        self.btn2.text = str(math.get(self.saved_qst)[random_nums_anws[1]])
+        self.btn3.text = str(math.get(self.saved_qst)[random_nums_anws[2]])
+        self.btn4.text = str(math.get(self.saved_qst)[random_nums_anws[3]])
+
+        if len(math.get(self.saved_qst)) > 3:
+            pass
+        # мне не очень хочется делать вставку картинки пока что
 
     def check_answ(self, instance):
-        instance.text = 'no'
+        pass
 
 
 sm = ScreenManager()
