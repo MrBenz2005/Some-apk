@@ -6,9 +6,9 @@ from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.anchorlayout import AnchorLayout
-from code.py import math
-from code.py import key
-from code.py import idk
+from code import math
+from code import key
+from code import idk
 import random
 
 Config.set('graphics', 'width', 400)
