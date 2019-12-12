@@ -76,13 +76,13 @@ class I_dont_know(Screen):
         for i in math:
             self.a = i
             break
-        if self.btn1 == self.a:
+        if self.btn1.text == self.a[0]:
             self.btn1 = Button(text='answ', background_color=(1, 2, 7, 1))
-        elif self.btn2 == self.a:
+        elif self.btn2.text == self.a[0]:
             self.btn2 = Button(text='answ', background_color=(1, 2, 7, 1))
-        elif self.btn3 == self.a:
+        elif self.btn3.text == self.a[0]:
             self.btn3 = Button(text='answ', background_color=(1, 2, 7, 1))
-        elif self.btn4 == self.a:
+        elif self.btn4.text == self.a[0]:
             self.btn4 = Button(text='answ', background_color=(1, 2, 7, 1))
 
 
