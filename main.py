@@ -36,9 +36,6 @@ class I_dont_know(Screen):
         self.bl = BoxLayout(orientation='vertical', padding=15)
         self.gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
         self.qst_on = Label(text='')
-
-        bl.add_widget(al)
-        bl.add_widget(self.qst_on)
         self.btn1 = Button(text='answ')
         self.btn2 = Button(text='answ')
         self.btn3 = Button(text='answ')
@@ -47,6 +44,8 @@ class I_dont_know(Screen):
         self.gl.add_widget(self.btn2)
         self.gl.add_widget(self.btn3)
         self.gl.add_widget(self.btn4)
+        self.bl.add_widget(al)
+        self.bl.add_widget(self.qst_on)
         self.bl.add_widget(self.gl)
         self.add_widget(self.bl)
         self.generate_q()
@@ -75,15 +74,16 @@ class I_dont_know(Screen):
 
     def check_answ(self):
         for i in math:
-            a = i
-            if self.btn1 == a:
-                self.btn1 = Button(text='answ', background_color=(1, 2, 7, 1))
-            elif self.btn2 == a:
-                self.btn2 = Button(text='answ', background_color=(1, 2, 7, 1))
-            elif self.btn3 == a:
-                self.btn3 = Button(text='answ', background_color=(1, 2, 7, 1))
-            elif self.btn4 == a:
-                self.btn4 = Button(text='answ', background_color=(1, 2, 7, 1))
+            self.a = i
+            break
+        if self.btn1 == self.a:
+            self.btn1 = Button(text='answ', background_color=(1, 2, 7, 1))
+        elif self.btn2 == self.a:
+            self.btn2 = Button(text='answ', background_color=(1, 2, 7, 1))
+        elif self.btn3 == self.a:
+            self.btn3 = Button(text='answ', background_color=(1, 2, 7, 1))
+        elif self.btn4 == self.a:
+            self.btn4 = Button(text='answ', background_color=(1, 2, 7, 1))
 
 
 
@@ -116,6 +116,7 @@ class Math(Screen):
         self.add_widget(self.bl)
         self.generate_q()
         self.generate_answ()
+        self.check_answ()
         # генерация начального вопроса
 
     def generate_q(self):
@@ -136,8 +137,18 @@ class Math(Screen):
             pass
         # мне не очень хочется делать вставку картинки пока что
 
-    def check_answ(self, instance):
-        pass
+    def check_answ(self):
+        for i in math:
+            self.a = i
+            break
+        if self.btn1 == self.a:
+            self.btn1 = Button(text='answ', background_color=(1, 2, 7, 1))
+        elif self.btn2 == self.a:
+            self.btn2 = Button(text='answ', background_color=(1, 2, 7, 1))
+        elif self.btn3 == self.a:
+            self.btn3 = Button(text='answ', background_color=(1, 2, 7, 1))
+        elif self.btn4 == self.a:
+            self.btn4 = Button(text='answ', background_color=(1, 2, 7, 1))
 
     def on_leave(self):
         self.bl.clear_widgets()
