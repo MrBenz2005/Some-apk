@@ -33,9 +33,10 @@ class I_dont_know(Screen):
     def on_enter(self):
         al = AnchorLayout(anchor_x='left', anchor_y='top', size_hint=(1, .1))
         al.add_widget(Button(text="Back", on_press=lambda x: set_screen('menu'), size_hint=(.5, 1)))
-        bl = BoxLayout(orientation='vertical', padding=15)
+        self.bl = BoxLayout(orientation='vertical', padding=15)
         self.gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
         self.qst_on = Label(text='')
+
         bl.add_widget(al)
         bl.add_widget(self.qst_on)
         self.btn1 = Button(text='answ')
@@ -46,8 +47,8 @@ class I_dont_know(Screen):
         self.gl.add_widget(self.btn2)
         self.gl.add_widget(self.btn3)
         self.gl.add_widget(self.btn4)
-        bl.add_widget(self.gl)
-        self.add_widget(bl)
+        self.bl.add_widget(self.gl)
+        self.add_widget(self.bl)
         self.generate_q()
         self.generate_answ()
         self.check_answ()
@@ -86,6 +87,9 @@ class I_dont_know(Screen):
 
 
 
+    def on_leave(self):
+        self.bl.clear_widgets()
+
 
 class Math(Screen):
 
@@ -95,11 +99,11 @@ class Math(Screen):
     def on_enter(self):
         al = AnchorLayout(anchor_x='left', anchor_y='top', size_hint=(1, .1))
         al.add_widget(Button(text="Back", on_press=lambda x: set_screen('menu'), size_hint=(.5, 1)))
-        bl = BoxLayout(orientation='vertical', padding=15)
+        self.bl = BoxLayout(orientation='vertical', padding=15)
         self.gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
         self.qst_on = Label(text='')
-        bl.add_widget(al)
-        bl.add_widget(self.qst_on)
+        self.bl.add_widget(al)
+        self.bl.add_widget(self.qst_on)
         self.btn1 = Button(text='answ', on_press=self.check_answ)
         self.btn2 = Button(text='answ', on_press=self.check_answ)
         self.btn3 = Button(text='answ', on_press=self.check_answ)
@@ -108,8 +112,8 @@ class Math(Screen):
         self.gl.add_widget(self.btn2)
         self.gl.add_widget(self.btn3)
         self.gl.add_widget(self.btn4)
-        bl.add_widget(self.gl)
-        self.add_widget(bl)
+        self.bl.add_widget(self.gl)
+        self.add_widget(self.bl)
         self.generate_q()
         self.generate_answ()
         # генерация начального вопроса
@@ -135,6 +139,9 @@ class Math(Screen):
     def check_answ(self, instance):
         pass
 
+    def on_leave(self):
+        self.bl.clear_widgets()
+
 
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
@@ -145,6 +152,8 @@ sm.add_widget(I_dont_know(name='idk'))
 def set_screen(name_screen):
     assert isinstance(name_screen, object)
     sm.current = name_screen
+
+
 
 
 class TestApp(App):
