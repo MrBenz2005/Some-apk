@@ -36,12 +36,13 @@ class I_dont_know(Screen):
         self.bl = BoxLayout(orientation='vertical', padding=15)
         self.gl = GridLayout(cols=2, spacing=15, size_hint=(1, .4))
         self.qst_on = Label(text='')
-        self.bl.add_widget(al)
-        self.bl.add_widget(self.qst_on)
-        self.btn1 = Button(text='answ', on_press=self.check_answ)
-        self.btn2 = Button(text='answ', on_press=self.check_answ)
-        self.btn3 = Button(text='answ', on_press=self.check_answ)
-        self.btn4 = Button(text='answ', on_press=self.check_answ)
+
+        bl.add_widget(al)
+        bl.add_widget(self.qst_on)
+        self.btn1 = Button(text='answ')
+        self.btn2 = Button(text='answ')
+        self.btn3 = Button(text='answ')
+        self.btn4 = Button(text='answ')
         self.gl.add_widget(self.btn1)
         self.gl.add_widget(self.btn2)
         self.gl.add_widget(self.btn3)
@@ -50,6 +51,8 @@ class I_dont_know(Screen):
         self.add_widget(self.bl)
         self.generate_q()
         self.generate_answ()
+        self.check_answ()
+
         # генерация начального вопроса
 
     def generate_q(self):
@@ -59,19 +62,30 @@ class I_dont_know(Screen):
         self.saved_qst = random_question
 
     def generate_answ(self):
-        random_nums_anws = list(range(0, 4))
-        random.shuffle(random_nums_anws)
-        self.btn1.text = str(idk.get(self.saved_qst)[random_nums_anws[0]])
-        self.btn2.text = str(idk.get(self.saved_qst)[random_nums_anws[1]])
-        self.btn3.text = str(idk.get(self.saved_qst)[random_nums_anws[2]])
-        self.btn4.text = str(idk.get(self.saved_qst)[random_nums_anws[3]])
+        self.random_nums_anws = list(range(0, 4))
+        random.shuffle(self.random_nums_anws)
+        self.btn1.text = str(idk.get(self.saved_qst)[self.random_nums_anws[0]])
+        self.btn2.text = str(idk.get(self.saved_qst)[self.random_nums_anws[1]])
+        self.btn3.text = str(idk.get(self.saved_qst)[self.random_nums_anws[2]])
+        self.btn4.text = str(idk.get(self.saved_qst)[self.random_nums_anws[3]])
 
         if len(idk.get(self.saved_qst)) > 3:
             pass
         # мне не очень хочется делать вставку картинки пока что
 
-    def check_answ(self, instance):
-        pass
+    def check_answ(self):
+        for i in math:
+            a = i
+            if self.btn1 == a:
+                self.btn1 = Button(text='answ', background_color=(1, 2, 7, 1))
+            elif self.btn2 == a:
+                self.btn2 = Button(text='answ', background_color=(1, 2, 7, 1))
+            elif self.btn3 == a:
+                self.btn3 = Button(text='answ', background_color=(1, 2, 7, 1))
+            elif self.btn4 == a:
+                self.btn4 = Button(text='answ', background_color=(1, 2, 7, 1))
+
+
 
     def on_leave(self):
         self.bl.clear_widgets()
